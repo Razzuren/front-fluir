@@ -8,7 +8,6 @@ export default function Home() {
   const [prompt, setPrompt] = useState<string>(""); // State for input text
   const [response, setResponse] = useState<string>(""); // State for generated response
   const [wordCount, setWordCount] = useState<number>(0); // State for word count
-  const lastTriggerWordCount = useRef<number>(0); // Ref to store last triggered word count
   const controllerRef = useRef<AbortController | null>(null); // Reference to AbortController
 
   // Function to handle text input changes
@@ -62,7 +61,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen space-y-6">
-
       <Label htmlFor="message-2">História Médica</Label>
       <Textarea
         placeholder="Comece a escrever aqui, a LLM completará o texto abaixo..."
