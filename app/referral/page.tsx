@@ -2,7 +2,7 @@
 
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useRef, ChangeEvent, KeyboardEvent } from "react";
 
 export default function MedicalDocumentPage() {
   const [medicalHistory, setMedicalHistory] = useState<string>(""); // State for medical history input
@@ -70,6 +70,19 @@ export default function MedicalDocumentPage() {
     }
   };
 
+  // Change the completion to medical history
+  const handleAppendCompletion = () => {
+    setMedicalHistory((prev) => `${completion}`);
+  };
+
+  // Handle key down event for Tab key
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      handleAppendCompletion();
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen space-y-8">
       {/* Medical History Section */}
@@ -80,6 +93,7 @@ export default function MedicalDocumentPage() {
           placeholder="Comece a escrever aqui. O LLM completará conforme necessário..."
           value={medicalHistory}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
           className="w-full h-40 p-4 border rounded-md"
         />
         <Textarea
@@ -88,6 +102,12 @@ export default function MedicalDocumentPage() {
           readOnly
           className="w-full h-20 p-4 mt-4 border rounded-md bg-gray-100"
         />
+        <button
+          onClick={handleAppendCompletion}
+          className="mt-2 p-2 bg-blue-500 text-white rounded-md"
+        >
+          Adicionar à História Médica
+        </button>
       </div>
 
       {/* Medical Referral Section */}
