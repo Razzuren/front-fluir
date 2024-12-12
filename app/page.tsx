@@ -15,7 +15,7 @@ export default function HomePage() {
       </p>
 
       <div className="flex space-x-4">
-        <Link href="/medical-document">
+        <Link href="/referral">
           <button className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600">
             Criar Documento Médico
           </button>

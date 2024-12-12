@@ -54,7 +54,7 @@ export default function MedicalDocumentPage() {
   // Generate a referral
   const handleGenerateReferral = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/referal", {
+      const res = await fetch("http://127.0.0.1:5000/referral", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: medicalHistory }),
@@ -96,7 +96,7 @@ export default function MedicalDocumentPage() {
         <Textarea
           id="referral"
           placeholder="Texto do Encaminhamento aparecerá aqui..."
-          value={referral}
+          value={JSON.stringify(referral)}
           readOnly
           className="w-full h-40 p-4 border rounded-md bg-gray-100"
         />
